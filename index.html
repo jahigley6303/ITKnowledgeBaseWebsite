@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Knowledge Base</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div>
+            <p class="eyebrow">IT Support Reference</p>
+            <h1>IT Knowledge Base</h1>
+        </div>
+        <div class="status-strip" aria-label="Knowledge base metrics">
+            <div>
+                <span id="articleCount">0</span>
+                <small>Articles</small>
+            </div>
+            <div>
+                <span>5</span>
+                <small>Categories</small>
+            </div>
+            <div>
+                <span>Tier 1</span>
+                <small>Support</small>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-shell">
+        <aside class="sidebar" aria-label="Knowledge base filters">
+            <div class="search-panel">
+                <label for="searchInput">Search articles</label>
+                <div class="search-box">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="searchInput" type="search" placeholder="VPN, printer, password...">
+                </div>
+            </div>
+
+            <nav class="category-panel" aria-label="Categories">
+                <button class="category-button active" data-category="All" type="button">
+                    <span class="category-icon">◆</span>
+                    All Articles
+                </button>
+                <button class="category-button" data-category="Accounts" type="button">
+                    <span class="category-icon">ID</span>
+                    Accounts
+                </button>
+                <button class="category-button" data-category="Networking" type="button">
+                    <span class="category-icon">NW</span>
+                    Networking
+                </button>
+                <button class="category-button" data-category="Hardware" type="button">
+                    <span class="category-icon">HW</span>
+                    Hardware
+                </button>
+                <button class="category-button" data-category="Software" type="button">
+                    <span class="category-icon">SW</span>
+                    Software
+                </button>
+                <button class="category-button" data-category="Security" type="button">
+                    <span class="category-icon">SEC</span>
+                    Security
+                </button>
+            </nav>
+        </aside>
+
+        <section class="content-area" aria-label="Knowledge base articles">
+            <section class="quick-actions" aria-label="Common support paths">
+                <button class="quick-card" data-quick-search="password" type="button">
+                    <span>Password Reset</span>
+                    <strong>Account recovery</strong>
+                </button>
+                <button class="quick-card" data-quick-search="vpn" type="button">
+                    <span>VPN Issue</span>
+                    <strong>Remote access</strong>
+                </button>
+                <button class="quick-card" data-quick-search="printer" type="button">
+                    <span>Printer Offline</span>
+                    <strong>Device support</strong>
+                </button>
+            </section>
+
+            <div class="workspace">
+                <section class="article-list-panel">
+                    <div class="panel-header">
+                        <h2>Articles</h2>
+                        <span id="resultCount">0 results</span>
+                    </div>
+                    <div id="articleList" class="article-list"></div>
+                </section>
+
+                <article id="articleDetail" class="article-detail" aria-live="polite"></article>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

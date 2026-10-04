@@ -1,3 +1,5 @@
+// Knowledge base article data.
+// Each object stores the content needed to build both the article card and detail view.
 const articles = [
     {
         id: "password-reset",
@@ -169,6 +171,7 @@ const articles = [
     }
 ];
 
+// Main page elements used by the JavaScript.
 const articleList = document.querySelector("#articleList");
 const articleDetail = document.querySelector("#articleDetail");
 const searchInput = document.querySelector("#searchInput");
@@ -177,16 +180,21 @@ const articleCount = document.querySelector("#articleCount");
 const categoryButtons = document.querySelectorAll(".category-button");
 const quickCards = document.querySelectorAll(".quick-card");
 
+// Tracks which category and article are currently selected.
 let selectedCategory = "All";
 let selectedArticleId = articles[0].id;
 
+// Shows the total article count in the header.
 articleCount.textContent = articles.length;
 
 function getFilteredArticles() {
+    // Normalize the search text so matching is not case-sensitive.
     const searchTerm = searchInput.value.trim().toLowerCase();
 
     return articles.filter((article) => {
         const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
+
+        // Combine the important article fields into one searchable text string.
         const searchableText = [
             article.title,
             article.category,
@@ -201,21 +209,25 @@ function getFilteredArticles() {
 }
 
 function renderArticleList() {
+    // Rebuilds the article card list every time the search or category changes.
     const filteredArticles = getFilteredArticles();
     resultCount.textContent = `${filteredArticles.length} result${filteredArticles.length === 1 ? "" : "s"}`;
     articleList.innerHTML = "";
 
     if (filteredArticles.length === 0) {
+        // Show a simple empty state when no articles match the filters.
         articleList.innerHTML = '<p class="empty-state">No matching articles found.</p>';
         articleDetail.innerHTML = '<p class="empty-state">Try another search term or category.</p>';
         return;
     }
 
     if (!filteredArticles.some((article) => article.id === selectedArticleId)) {
+        // If the selected article is filtered out, select the first matching article.
         selectedArticleId = filteredArticles[0].id;
     }
 
     filteredArticles.forEach((article) => {
+        // Create one clickable button for each matching knowledge base article.
         const button = document.createElement("button");
         button.className = `article-button${article.id === selectedArticleId ? " active" : ""}`;
         button.type = "button";
@@ -230,6 +242,7 @@ function renderArticleList() {
         `;
 
         button.addEventListener("click", () => {
+            // Update the selected article when a user clicks an article card.
             selectedArticleId = article.id;
             renderArticleList();
             renderArticleDetail();
@@ -242,6 +255,7 @@ function renderArticleList() {
 }
 
 function renderArticleDetail() {
+    // Finds the full article object that matches the selected article ID.
     const article = articles.find((item) => item.id === selectedArticleId);
 
     if (!article) {
@@ -249,6 +263,7 @@ function renderArticleDetail() {
         return;
     }
 
+    // Template literals make it easier to build a larger detail panel from article data.
     articleDetail.innerHTML = `
         <div class="detail-header">
             <div>
@@ -285,6 +300,7 @@ function renderArticleDetail() {
 
 categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
+        // Category buttons filter the article list by the data-category value.
         selectedCategory = button.dataset.category;
 
         categoryButtons.forEach((categoryButton) => {
@@ -297,6 +313,7 @@ categoryButtons.forEach((button) => {
 
 quickCards.forEach((card) => {
     card.addEventListener("click", () => {
+        // Quick cards reset the category and search for a common support topic.
         selectedCategory = "All";
         searchInput.value = card.dataset.quickSearch;
 
@@ -308,6 +325,8 @@ quickCards.forEach((card) => {
     });
 });
 
+// Re-render the list while the user types in the search box.
 searchInput.addEventListener("input", renderArticleList);
 
+// Initial page load.
 renderArticleList();

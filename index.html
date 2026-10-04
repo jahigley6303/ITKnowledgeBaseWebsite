@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Top header with the page title and quick knowledge base metrics. -->
     <header class="top-bar">
         <div>
             <p class="eyebrow">IT Support Reference</p>
@@ -28,7 +29,9 @@
         </div>
     </header>
 
+    <!-- Main two-column application layout: filters on the left, articles on the right. -->
     <main class="app-shell">
+        <!-- Sidebar contains the search box and category filter buttons. -->
         <aside class="sidebar" aria-label="Knowledge base filters">
             <div class="search-panel">
                 <label for="searchInput">Search articles</label>
@@ -67,6 +70,7 @@
         </aside>
 
         <section class="content-area" aria-label="Knowledge base articles">
+            <!-- Quick action cards fill the search box with common support topics. -->
             <section class="quick-actions" aria-label="Common support paths">
                 <button class="quick-card" data-quick-search="password" type="button">
                     <span>Password Reset</span>
@@ -83,6 +87,7 @@
             </section>
 
             <div class="workspace">
+                <!-- JavaScript fills this panel with matching article cards. -->
                 <section class="article-list-panel">
                     <div class="panel-header">
                         <h2>Articles</h2>
@@ -91,6 +96,7 @@
                     <div id="articleList" class="article-list"></div>
                 </section>
 
+                <!-- JavaScript fills this area with the selected article details. -->
                 <article id="articleDetail" class="article-detail" aria-live="polite"></article>
             </div>
         </section>

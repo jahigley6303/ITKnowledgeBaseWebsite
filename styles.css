@@ -1,4 +1,5 @@
 :root {
+    /* Shared color values used throughout the site. */
     color-scheme: dark;
     --bg: #0e1117;
     --panel: #171c24;
@@ -14,6 +15,7 @@
 }
 
 * {
+    /* Keeps padding and borders from making elements wider than expected. */
     box-sizing: border-box;
 }
 
@@ -34,6 +36,8 @@ input {
 button {
     cursor: pointer;
 }
+
+/* Header and page-level layout */
 
 .top-bar {
     display: flex;
@@ -97,10 +101,13 @@ h1 {
 }
 
 .app-shell {
+    /* Sidebar + content area layout for desktop screens. */
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     min-height: calc(100vh - 105px);
 }
+
+/* Sidebar search and category filter styles */
 
 .sidebar {
     padding: 24px;
@@ -163,6 +170,7 @@ h1 {
 
 .category-button:hover,
 .category-button.active {
+    /* The active class shows which category is currently selected. */
     border-color: var(--border);
     background: var(--panel);
 }
@@ -182,6 +190,8 @@ h1 {
 .content-area {
     padding: 24px;
 }
+
+/* Quick action cards above the article list */
 
 .quick-actions {
     display: grid;
@@ -221,11 +231,14 @@ h1 {
 }
 
 .workspace {
+    /* Article cards stay on the left; the selected article opens on the right. */
     display: grid;
     grid-template-columns: minmax(280px, 410px) minmax(0, 1fr);
     gap: 18px;
     align-items: start;
 }
+
+/* Article list and detail panel */
 
 .article-list-panel,
 .article-detail {
@@ -254,6 +267,7 @@ h1 {
 }
 
 .article-list {
+    /* Keeps long article lists scrollable without moving the detail panel. */
     display: grid;
     max-height: 620px;
     overflow: auto;
@@ -274,6 +288,7 @@ h1 {
 
 .article-button:hover,
 .article-button.active {
+    /* Highlights the article currently displayed in the detail panel. */
     background: var(--panel-strong);
 }
 
@@ -307,6 +322,7 @@ h1 {
 }
 
 .priority.high {
+    /* Priority colors make high, medium, and low issues easy to scan. */
     border-color: rgba(255, 107, 107, 0.5);
     color: var(--danger);
 }
@@ -377,6 +393,8 @@ h1 {
     padding: 24px;
     color: var(--muted);
 }
+
+/* Responsive styles for tablets and phones */
 
 @media (max-width: 920px) {
     .top-bar,
